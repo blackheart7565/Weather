@@ -1,18 +1,85 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Weather</title>
+	<title>Weather</title>
 
-    <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/main.css">
 
-    <script src="js/main.js" async defer></script>
+	<script src="js/main.js" async defer></script>
 </head>
-<body>
 
+<body>
+	<div class="wrapper">
+		<div class="wrapper__inner">
+
+			<div class="tab-menu">
+				<div class="tab-menu__header">
+					<h1 class="tab-menu__header--title title">My Weather</h1>
+                    <form class="form" action="#">
+                        <input class="form__search" type="text" placeholder="Search location" />
+                        <button class="form__search-btn"></button>
+                    </form>
+				</div>
+
+				<div class="tab-menu__btns">
+					<button class="tab-menu__btn btn">Today</button>
+					<button class="tab-menu__btn btn">5-day forecast</button>
+				</div>
+
+				<div class="tab-menu__content">
+
+					<div class="tab-menu__panel">
+						<section class="tab-menu__current-weather">
+							<div class="tab-menu__current-weather--header">
+								<h2 class="tab-menu__title title">Current Weather</h2>
+								<h2 class="tab-menu__data title">30.06.2018</h2>
+							</div>
+							<div class="tab-menu__current-weather--content">
+                                <div class="tab-menu__icon">
+								    <img class="tab-menu__img" src="" alt="img" />
+                                    <h3 class="tab-menu__subtext">Sunny</h3>
+                                </div>
+
+								<div class="tab-menu__current-temp">
+									<h2 class="tab-menu__heading"></h2>
+									<div class="tab-menu__real-feel">30</div>
+								</div>
+
+								<div class="tab-menu__info">
+									<span class="tab-menu__text">Sunrise</span>
+									<div class="tab-menu__sunrise">7:04AM</div>
+
+									<span class="tab-menu__text">Sunset</span>
+									<div class="tab-menu__sunset">5:11PM</div>
+
+									<span class="tab-menu__text">Duration</span>
+									<div class="tab-menu__duration">10:07hr</div>
+								</div>
+							</div>
+						</section>
+<section class="tab-menu__hourly">
+
+</section>					</div>
+
+					<div class="tab-menu__panel">
+						<section class="tab-menu__current-weather">
+
+						</section>
+<section class="tab-menu__hourly">
+
+</section>					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
 </body>
+
 </html>
