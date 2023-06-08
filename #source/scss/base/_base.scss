@@ -7,3 +7,24 @@ body{
   font-weight: 400;
   background: rgba(82, 81, 81, 0.91);
 }
+
+.container {
+  padding: 20px;
+}
+
+.title {
+  color: #1a8381;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.btn {
+  color: #fff;
+  background: #404040;
+  padding: 11px 20px;
+
+  &:hover {
+    border-bottom: 2px solid #14b1be;
+    box-shadow: 0 0 10px #14b1be;
+  }
+}
