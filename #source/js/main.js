@@ -1,5 +1,7 @@
-const a = document.querySelector('a');
+const a = document.querySelectorAll('a');
 
-a.addEventListener('click', e => {
-    e.preventDefault();
+a.forEach(item => {
+   item.addEventListener('click', e => {
+       e.preventDefault();
+   });
 });

@@ -4,7 +4,6 @@
 
   // .wrapper__inner
   &__inner {
-    border: 1px solid #000;
     height: 100vh;
   }
 }
@@ -27,7 +26,6 @@
   // .tab-menu__btns
   &__btns {
     background: #404040;
-    margin-bottom: 20px;
     padding: 0 $--padding-container;
     height: 40px;
   }
@@ -38,15 +36,18 @@
   &__content {
     display: grid;
     gap: 20px;
-    padding: 10px $--padding-container;
+    padding: 20px $--padding-container;
   }
   // .tab-menu__panel
   &__panel {
-    background: #f4f4f4;
-    padding: $--padding-container;
+    display: grid;
+    gap: 20px;
   }
   // .tab-menu__current-weather
   &__current-weather {
+    background: $color-curent-weather;
+    //background: #f4f4f4;
+    padding: $--padding-container;
   }
   // .tab-menu__current-weather--header
   &__current-weather--header {
@@ -100,18 +101,67 @@
     display: grid;
     gap: 20px;
   }
+  // .tab-menu__sunrise
+  &__sunrise {
+  }
   // .tab-menu__text
   &__text {
     margin-right: 20px;
-  }
-  // .tab-menu__sunrise
-  &__sunrise {
   }
   // .tab-menu__sunset
   &__sunset {
   }
   // .tab-menu__duration
   &__duration {
+  }
+  // .tab-menu__current-weather--nav
+  &__weather-days {
+  }
+  // .tab-menu__current-weather--nav
+  &__weather-days--nav {
+  }
+  // .tab-menu__current-weather--list
+  &__weather-days--list {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  // .tab-menu__current-weather--item
+  &__weather-days--item {
+    background: $color-curent-weather;
+    padding: $--padding-container;
+
+    text-align: center;
+  }
+  // .tab-menu__weather-days--link
+  &__weather-days--link {
+    display: grid;
+    gap: 10px;
+
+    color: #000;
+  }
+  // .tab-menu__current-weather--title
+  &__weather-days--title {
+    font-size: 18px;
+  }
+  // .tab-menu__current-weather--data
+  &__weather-days--data {
+  }
+  // .tab-menu__current-weather--year
+  &__weather-days--year {
+  }
+  // .tab-menu__current-weather--day
+  &__weather-days--day {
+  }
+  // .tab-menu__current-weather--img
+  &__weather-days--img {
+  }
+  // .tab-menu__current-weather--temp
+  &__weather-days--temp {
+    font-size: 40px;
+  }
+  // .tab-menu__current-weather--forecast
+  &__weather-days--forecast {
+    font-size: 14px;
   }
 }
 .form {
@@ -137,10 +187,3 @@
     transform: translate(0, -50%);
   }
 }
-
-
-
-
-
-
-

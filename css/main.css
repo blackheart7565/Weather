@@ -120,7 +120,6 @@ body {
   margin: 0 auto;
 }
 .wrapper__inner {
-  border: 1px solid #000;
   height: 100vh;
 }
 
@@ -146,7 +145,6 @@ body {
 }
 .tab-menu__btns {
   background: #404040;
-  margin-bottom: 20px;
   padding: 0 30px;
   height: 40px;
 }
@@ -154,10 +152,15 @@ body {
   display: -ms-grid;
   display: grid;
   gap: 20px;
-  padding: 10px 30px;
+  padding: 20px 30px;
 }
 .tab-menu__panel {
-  background: #f4f4f4;
+  display: -ms-grid;
+  display: grid;
+  gap: 20px;
+}
+.tab-menu__current-weather {
+  background: #e8ecef;
   padding: 30px;
 }
 .tab-menu__current-weather--header {
@@ -209,6 +212,33 @@ body {
 .tab-menu__text {
   margin-right: 20px;
 }
+.tab-menu__weather-days--list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+  grid-template-columns: repeat(7, 1fr);
+}
+.tab-menu__weather-days--item {
+  background: #e8ecef;
+  padding: 30px;
+  text-align: center;
+}
+.tab-menu__weather-days--link {
+  display: -ms-grid;
+  display: grid;
+  gap: 10px;
+  color: #000;
+}
+.tab-menu__weather-days--title {
+  font-size: 18px;
+}
+.tab-menu__weather-days--temp {
+  font-size: 40px;
+}
+.tab-menu__weather-days--forecast {
+  font-size: 14px;
+}
+
 .form {
   position: relative;
   background: #000;
@@ -228,4 +258,67 @@ body {
   right: 10px;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
+}
+
+.tab-menu__hourly {
+  background: #f4f4f4;
+  padding: 30px;
+}
+.tab-menu__hourly--header {
+  margin-bottom: 20px;
+}
+.tab-menu__hourly--content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+.tab-menu__hourly--description {
+  display: -ms-grid;
+  display: grid;
+  gap: 20px;
+  width: 130px;
+  padding: 10px;
+  background: #e3e3e3;
+  color: #606463;
+  text-transform: uppercase;
+  text-align: center;
+}
+.tab-menu__hourly--img {
+  width: 80px;
+  height: 80px;
+}
+.tab-menu__hourly--nav {
+  height: 100%;
+}
+.tab-menu__hourly--list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 20px 1fr 20px 1fr 20px 1fr 20px 1fr 20px 1fr;
+  grid-template-columns: repeat(6, 1fr);
+  -webkit-column-gap: 20px;
+     -moz-column-gap: 20px;
+          column-gap: 20px;
+  height: inherit;
+}
+.tab-menu__hourly--item {
+  padding: 10px 30px;
+  height: inherit;
+  text-align: center;
+}
+.tab-menu__hourly--link {
+  display: -ms-grid;
+  display: grid;
+  gap: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: inherit;
+  color: #000;
+}
+.tab-menu__hourly--icon {
+  width: 80px;
 }

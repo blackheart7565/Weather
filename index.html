@@ -32,7 +32,7 @@
 
             <div class="tab-menu__btns">
                 <button class="tab-menu__btn btn">Today</button>
-                <button class="tab-menu__btn btn">5-day forecast</button>
+                <button class="tab-menu__btn btn">Day forecast</button>
             </div>
 
             <div class="tab-menu__content">
@@ -82,7 +82,7 @@
 			<h3 class="tab-menu__hourly--name">ToDay</h3>
 			<div class="tab-menu__hourly--img"></div>
 			<p class="tab-menu__hourly--forecast-title">Forecast</p>
-			<p class="tab-menu__hourly--temp-title">Temp(&deg;C)</p>
+			<p class="tab-menu__hourly--temp-title">Temp (&deg;C)</p>
 			<p class="tab-menu__hourly--real-feel-title">RealFeel</p>
 			<p class="tab-menu__hourly--wind-title">Wind (km/h)</p>
 		</div>
@@ -90,28 +90,161 @@
 			<nav class="tab-menu__hourly--nav">
 				<ul class="tab-menu__hourly--list">
 					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--button" href="">
+						<a class="tab-menu__hourly--link" href="#">
 							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--forecast" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--temp">20&deg;</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
 							<p class="tab-menu__hourly--real-feel">28&deg;</p>
 							<p class="tab-menu__hourly--wind">11ESE</p>
 						</a>
 					</li>
-					<li class="tab-menu__hourly--item"></li>
-					<li class="tab-menu__hourly--item"></li>
-					<li class="tab-menu__hourly--item"></li>
-					<li class="tab-menu__hourly--item"></li>
-					<li class="tab-menu__hourly--item"></li>
+					<li class="tab-menu__hourly--item">
+						<a class="tab-menu__hourly--link" href="#">
+							<p class="tab-menu__hourly--time">7pm</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
+							<p class="tab-menu__hourly--real-feel">28&deg;</p>
+							<p class="tab-menu__hourly--wind">11ESE</p>
+						</a>
+					</li>
+					<li class="tab-menu__hourly--item">
+						<a class="tab-menu__hourly--link" href="#">
+							<p class="tab-menu__hourly--time">7pm</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
+							<p class="tab-menu__hourly--real-feel">28&deg;</p>
+							<p class="tab-menu__hourly--wind">11ESE</p>
+						</a>
+					</li>
+					<li class="tab-menu__hourly--item">
+						<a class="tab-menu__hourly--link" href="#">
+							<p class="tab-menu__hourly--time">7pm</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
+							<p class="tab-menu__hourly--real-feel">28&deg;</p>
+							<p class="tab-menu__hourly--wind">11ESE</p>
+						</a>
+					</li>
+					<li class="tab-menu__hourly--item">
+						<a class="tab-menu__hourly--link" href="#">
+							<p class="tab-menu__hourly--time">7pm</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
+							<p class="tab-menu__hourly--real-feel">28&deg;</p>
+							<p class="tab-menu__hourly--wind">11ESE</p>
+						</a>
+					</li>
+					<li class="tab-menu__hourly--item">
+						<a class="tab-menu__hourly--link" href="#">
+							<p class="tab-menu__hourly--time">7pm</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
+							<p class="tab-menu__hourly--real-feel">28&deg;</p>
+							<p class="tab-menu__hourly--wind">11ESE</p>
+						</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
 	</div>
 </section>                </div>
 
-                <div class="tab-menu__panel">
-                    <section class="tab-menu__current-weather">
-
+                <div class="tab-menu__panel" style="display: none;">
+                    <section class="tab-menu__weather-days">
+                        <nav class="tab-menu__weather-days--nav">
+                            <ul class="tab-menu__weather-days--list">
+                                <li class="tab-menu__weather-days--item">
+                                    <a href="#" class="tab-menu__weather-days--link">
+                                        <h2 class="tab-menu__weather-days--title title">ToNight</h2>
+                                        <p class="tab-menu__weather-days--data">
+                                            <span class="tab-menu__weather-days--year">JUN</span>
+                                            <span class="tab-menu__weather-days--day">30</span>
+                                        </p>
+                                        <img class="tab-menu__weather-days--img" width="100px" src="img/sun.png" alt="icon-forecast">
+                                        <p class="tab-menu__weather-days--temp">25&deg;C</p>
+                                        <p class="tab-menu__weather-days--forecast">Clear, Warm</p>
+                                    </a>
+                                </li>
+                                <li class="tab-menu__weather-days--item">
+                                    <a href="#" class="tab-menu__weather-days--link">
+                                        <h2 class="tab-menu__weather-days--title title">ToNight</h2>
+                                        <p class="tab-menu__weather-days--data">
+                                            <span class="tab-menu__weather-days--year">JUN</span>
+                                            <span class="tab-menu__weather-days--day">30</span>
+                                        </p>
+                                        <img class="tab-menu__weather-days--img" width="100px" src="img/sun.png" alt="icon-forecast">
+                                        <p class="tab-menu__weather-days--temp">25&deg;C</p>
+                                        <p class="tab-menu__weather-days--forecast">Clear, Warm</p>
+                                    </a>
+                                </li>
+                                <li class="tab-menu__weather-days--item">
+                                    <a href="#" class="tab-menu__weather-days--link">
+                                        <h2 class="tab-menu__weather-days--title title">ToNight</h2>
+                                        <p class="tab-menu__weather-days--data">
+                                            <span class="tab-menu__weather-days--year">JUN</span>
+                                            <span class="tab-menu__weather-days--day">30</span>
+                                        </p>
+                                        <img class="tab-menu__weather-days--img" width="100px" src="img/sun.png" alt="icon-forecast">
+                                        <p class="tab-menu__weather-days--temp">25&deg;C</p>
+                                        <p class="tab-menu__weather-days--forecast">Clear, Warm</p>
+                                    </a>
+                                </li>
+                                <li class="tab-menu__weather-days--item">
+                                    <a href="#" class="tab-menu__weather-days--link">
+                                        <h2 class="tab-menu__weather-days--title title">ToNight</h2>
+                                        <p class="tab-menu__weather-days--data">
+                                            <span class="tab-menu__weather-days--year">JUN</span>
+                                            <span class="tab-menu__weather-days--day">30</span>
+                                        </p>
+                                        <img class="tab-menu__weather-days--img" width="100px" src="img/sun.png" alt="icon-forecast">
+                                        <p class="tab-menu__weather-days--temp">25&deg;C</p>
+                                        <p class="tab-menu__weather-days--forecast">Clear, Warm</p>
+                                    </a>
+                                </li>
+                                <li class="tab-menu__weather-days--item">
+                                    <a href="#" class="tab-menu__weather-days--link">
+                                        <h2 class="tab-menu__weather-days--title title">ToNight</h2>
+                                        <p class="tab-menu__weather-days--data">
+                                            <span class="tab-menu__weather-days--year">JUN</span>
+                                            <span class="tab-menu__weather-days--day">30</span>
+                                        </p>
+                                        <img class="tab-menu__weather-days--img" width="100px" src="img/sun.png" alt="icon-forecast">
+                                        <p class="tab-menu__weather-days--temp">25&deg;C</p>
+                                        <p class="tab-menu__weather-days--forecast">Clear, Warm</p>
+                                    </a>
+                                </li>
+                                <li class="tab-menu__weather-days--item">
+                                    <a href="#" class="tab-menu__weather-days--link">
+                                        <h2 class="tab-menu__weather-days--title title">ToNight</h2>
+                                        <p class="tab-menu__weather-days--data">
+                                            <span class="tab-menu__weather-days--year">JUN</span>
+                                            <span class="tab-menu__weather-days--day">30</span>
+                                        </p>
+                                        <img class="tab-menu__weather-days--img" width="100px" src="img/sun.png" alt="icon-forecast">
+                                        <p class="tab-menu__weather-days--temp">25&deg;C</p>
+                                        <p class="tab-menu__weather-days--forecast">Clear, Warm</p>
+                                    </a>
+                                </li>
+                                <li class="tab-menu__weather-days--item">
+                                    <a href="#" class="tab-menu__weather-days--link">
+                                        <h2 class="tab-menu__weather-days--title title">ToNight</h2>
+                                        <p class="tab-menu__weather-days--data">
+                                            <span class="tab-menu__weather-days--year">JUN</span>
+                                            <span class="tab-menu__weather-days--day">30</span>
+                                        </p>
+                                        <img class="tab-menu__weather-days--img" width="100px" src="img/sun.png" alt="icon-forecast">
+                                        <p class="tab-menu__weather-days--temp">25&deg;C</p>
+                                        <p class="tab-menu__weather-days--forecast">Clear, Warm</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </section>
 <section class="tab-menu__hourly">
 	<div class="tab-menu__hourly--header">
@@ -122,7 +255,7 @@
 			<h3 class="tab-menu__hourly--name">ToDay</h3>
 			<div class="tab-menu__hourly--img"></div>
 			<p class="tab-menu__hourly--forecast-title">Forecast</p>
-			<p class="tab-menu__hourly--temp-title">Temp(&deg;C)</p>
+			<p class="tab-menu__hourly--temp-title">Temp (&deg;C)</p>
 			<p class="tab-menu__hourly--real-feel-title">RealFeel</p>
 			<p class="tab-menu__hourly--wind-title">Wind (km/h)</p>
 		</div>
@@ -130,19 +263,65 @@
 			<nav class="tab-menu__hourly--nav">
 				<ul class="tab-menu__hourly--list">
 					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--button" href="">
+						<a class="tab-menu__hourly--link" href="#">
 							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--forecast" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--temp">20&deg;</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
 							<p class="tab-menu__hourly--real-feel">28&deg;</p>
 							<p class="tab-menu__hourly--wind">11ESE</p>
 						</a>
 					</li>
-					<li class="tab-menu__hourly--item"></li>
-					<li class="tab-menu__hourly--item"></li>
-					<li class="tab-menu__hourly--item"></li>
-					<li class="tab-menu__hourly--item"></li>
-					<li class="tab-menu__hourly--item"></li>
+					<li class="tab-menu__hourly--item">
+						<a class="tab-menu__hourly--link" href="#">
+							<p class="tab-menu__hourly--time">7pm</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
+							<p class="tab-menu__hourly--real-feel">28&deg;</p>
+							<p class="tab-menu__hourly--wind">11ESE</p>
+						</a>
+					</li>
+					<li class="tab-menu__hourly--item">
+						<a class="tab-menu__hourly--link" href="#">
+							<p class="tab-menu__hourly--time">7pm</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
+							<p class="tab-menu__hourly--real-feel">28&deg;</p>
+							<p class="tab-menu__hourly--wind">11ESE</p>
+						</a>
+					</li>
+					<li class="tab-menu__hourly--item">
+						<a class="tab-menu__hourly--link" href="#">
+							<p class="tab-menu__hourly--time">7pm</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
+							<p class="tab-menu__hourly--real-feel">28&deg;</p>
+							<p class="tab-menu__hourly--wind">11ESE</p>
+						</a>
+					</li>
+					<li class="tab-menu__hourly--item">
+						<a class="tab-menu__hourly--link" href="#">
+							<p class="tab-menu__hourly--time">7pm</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
+							<p class="tab-menu__hourly--real-feel">28&deg;</p>
+							<p class="tab-menu__hourly--wind">11ESE</p>
+						</a>
+					</li>
+					<li class="tab-menu__hourly--item">
+						<a class="tab-menu__hourly--link" href="#">
+							<p class="tab-menu__hourly--time">7pm</p>
+							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
+							<p class="tab-menu__hourly--forecast">Sunny</p>
+							<p class="tab-menu__hourly--temp">29&deg;</p>
+							<p class="tab-menu__hourly--real-feel">28&deg;</p>
+							<p class="tab-menu__hourly--wind">11ESE</p>
+						</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
