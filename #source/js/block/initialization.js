@@ -24,5 +24,6 @@ a.forEach(item => {
 
 btnSearch.addEventListener('click', e => {
     Weather.city = search.value;
+    weather.refreshWeather();
     weather.get(Weather.city);
 });

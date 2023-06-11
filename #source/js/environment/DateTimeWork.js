@@ -1,5 +1,14 @@
 
-class TimeWork {
+class DateTimeWork {
+    days = [
+        'Воскресенье',
+        'Понедельник',
+        'Вторник',
+        'Среда',
+        'Четверг',
+        'Пятница',
+        'Суббота'
+    ];
 
     getDate(value = 0) {
         let date = value === 0 ? new Date() : new Date(value);
@@ -26,7 +35,9 @@ class TimeWork {
 
         return isSecond === true ? `${hours}:${minutes}:${seconds}` : `${hours}:${minutes}`;
     }
-
+    getWeekDayName(date) {
+        return this.getDate(date) === this.getDate() ? 'ToNight': this.days[new Date(date).getDay()]
+    }
     #appendZeroStart(value) {
         return value > 9 ? `${value}` : `0${value}`;
     }

@@ -221,8 +221,8 @@ body {
 .tab-menu__weather-days--list {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[7];
-  grid-template-columns: repeat(7, 1fr);
+  -ms-grid-columns: (1fr)[6];
+  grid-template-columns: repeat(6, 1fr);
 }
 .tab-menu__weather-days--item {
   background: #e8ecef;
@@ -236,7 +236,15 @@ body {
   color: #000;
 }
 .tab-menu__weather-days--title {
-  font-size: 18px;
+  font-size: 17px;
+}
+.tab-menu__weather-days--img {
+  width: 100px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 .tab-menu__weather-days--temp {
   font-size: 40px;
