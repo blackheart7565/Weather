@@ -115,6 +115,11 @@ body {
   box-shadow: 0 0 10px #14b1be;
 }
 
+.btn-active {
+  border-bottom: 2px solid #14b1be;
+  box-shadow: 0 0 10px #14b1be;
+}
+
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -242,6 +247,13 @@ body {
 }
 .tab-menu__hourly--header {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px 0 0;
+}
+.tab-menu__hourly--city-name {
+  margin-right: 10px;
 }
 .tab-menu__hourly--content {
   display: flex;
@@ -249,17 +261,42 @@ body {
 }
 .tab-menu__hourly--description {
   display: grid;
-  gap: 20px;
+  gap: 10px;
   width: 130px;
   padding: 10px;
   background: #e3e3e3;
   color: #606463;
   text-transform: uppercase;
   text-align: center;
+  align-items: center;
 }
 .tab-menu__hourly--img {
   width: 80px;
   height: 80px;
+}
+.tab-menu__hourly--forecast-title {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+}
+.tab-menu__hourly--temp-title {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+}
+.tab-menu__hourly--real-feel-title {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+}
+.tab-menu__hourly--wind-title {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
 }
 .tab-menu__hourly--nav {
   height: 100%;
@@ -271,20 +308,41 @@ body {
   height: inherit;
 }
 .tab-menu__hourly--item {
-  padding: 10px 30px;
-  height: inherit;
-  text-align: center;
-}
-.tab-menu__hourly--link {
   display: grid;
-  gap: 20px;
   justify-content: center;
   align-items: center;
+  text-align: center;
   height: inherit;
+  gap: 10px;
+  padding: 10px 20px;
   color: #000;
 }
 .tab-menu__hourly--icon {
   width: 80px;
+}
+.tab-menu__hourly--forecast {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+}
+.tab-menu__hourly--temp {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+}
+.tab-menu__hourly--real-feel {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+}
+.tab-menu__hourly--wind {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=main.css.map */

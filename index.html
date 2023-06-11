@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="css/main.css">
 
-    <script src="js/main.js" async defer></script>
+    <script type="module" src="js/app.js" async defer></script>
 </head>
 
 <body>
@@ -23,8 +23,8 @@
         <div class="tab-menu__header">
             <h1 class="tab-menu__header--title title">My Weather</h1>
             <form class="form" action="#">
-                <input class="form__search" type="text" placeholder="Search location"/>
-                <button class="form__search-btn"></button>
+                <input id="search" class="form__search" type="text" placeholder="Search location"/>
+                <button id="btn-search" type="button" class="form__search-btn"></button>
             </form>
         </div>
 
@@ -41,121 +41,99 @@
                     <section class="tab-menu__current-weather">
                         <div class="tab-menu__current-weather--header">
                             <h2 class="tab-menu__title title">Current Weather</h2>
-                            <h2 class="tab-menu__data title">30.06.2018</h2>
+                            <h2 id="current-data" class="tab-menu__data title">30.06.2018</h2>
                         </div>
                         <div class="tab-menu__current-weather--content">
                             <div class="tab-menu__icon">
-                                <img class="tab-menu__img" src="img/sun.png" alt="img"/>
-                                <h3 class="tab-menu__subtext">Sunny</h3>
+                                <img class="tab-menu__img" src="" alt="img-weather"/>
+                                <h3 class="tab-menu__subtext"></h3>
                             </div>
 
                             <div class="tab-menu__current-temp">
                                 <h2 class="tab-menu__heading">29&deg;C</h2>
 
-                                <div class="tab-menu__real-feel">
-                                    <span>Real Feel: </span> 30&deg;
-                                </div>
+                                <div class="tab-menu__real-feel"></div>
                             </div>
 
                             <div class="tab-menu__info">
-                                <div class="tab-menu__sunrise">
-                                    <span class="tab-menu__text">Sunrise: </span>
-                                    7:04AM
-                                </div>
-                                <div class="tab-menu__sunset">
-                                    <span class="tab-menu__text">Sunset: </span>
-                                    5:11PM
-                                </div>
-                                <div class="tab-menu__duration">
-                                    <span class="tab-menu__text">Duration: </span>
-                                    10:07hr
-                                </div>
+                                <div class="tab-menu__sunrise"></div>
+                                <div class="tab-menu__sunset"></div>
+                                <div class="tab-menu__duration"></div>
                             </div>
                         </div>
                     </section>
 <section class="tab-menu__hourly">
-	<div class="tab-menu__hourly--header">
-		<h2 class="tab-menu__hourly--title title">Hourly</h2>
-	</div>
-	<div class="tab-menu__hourly--content">
-		<div class="tab-menu__hourly--description">
-			<h3 class="tab-menu__hourly--name">ToDay</h3>
-			<div class="tab-menu__hourly--img"></div>
-			<p class="tab-menu__hourly--forecast-title">Forecast</p>
-			<p class="tab-menu__hourly--temp-title">Temp (&deg;C)</p>
-			<p class="tab-menu__hourly--real-feel-title">RealFeel</p>
-			<p class="tab-menu__hourly--wind-title">Wind (km/h)</p>
-		</div>
-		<div class="tab-menu__hourly--today-list">
-			<nav class="tab-menu__hourly--nav">
-				<ul class="tab-menu__hourly--list">
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
+    <div class="tab-menu__hourly--header">
+        <h2 class="tab-menu__hourly--title title">Hourly</h2>
+        <h2 id="city" class="tab-menu__hourly--city title"></h2>
+    </div>
+    <div class="tab-menu__hourly--content">
+        <div class="tab-menu__hourly--description">
+            <h3 class="tab-menu__hourly--name">ToDay</h3>
+            <div class="tab-menu__hourly--img"></div>
+            <p class="tab-menu__hourly--forecast-title">Forecast</p>
+            <p class="tab-menu__hourly--temp-title">Temp (&deg;C)</p>
+            <p class="tab-menu__hourly--real-feel-title">RealFeel</p>
+            <p class="tab-menu__hourly--wind-title">Wind (km/h)</p>
+        </div>
+        <div class="tab-menu__hourly--today-list">
+            <nav class="tab-menu__hourly--nav">
+                <ul class="tab-menu__hourly--list">
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+                </ul>
+            </nav>
+        </div>
+    </div>
 </section>                </div>
 
-                <div class="tab-menu__panel" style="display: none;">
+                <div class="tab-menu__panel">
                     <section class="tab-menu__weather-days">
                         <nav class="tab-menu__weather-days--nav">
                             <ul class="tab-menu__weather-days--list">
@@ -247,85 +225,74 @@
                         </nav>
                     </section>
 <section class="tab-menu__hourly">
-	<div class="tab-menu__hourly--header">
-		<h2 class="tab-menu__hourly--title title">Hourly</h2>
-	</div>
-	<div class="tab-menu__hourly--content">
-		<div class="tab-menu__hourly--description">
-			<h3 class="tab-menu__hourly--name">ToDay</h3>
-			<div class="tab-menu__hourly--img"></div>
-			<p class="tab-menu__hourly--forecast-title">Forecast</p>
-			<p class="tab-menu__hourly--temp-title">Temp (&deg;C)</p>
-			<p class="tab-menu__hourly--real-feel-title">RealFeel</p>
-			<p class="tab-menu__hourly--wind-title">Wind (km/h)</p>
-		</div>
-		<div class="tab-menu__hourly--today-list">
-			<nav class="tab-menu__hourly--nav">
-				<ul class="tab-menu__hourly--list">
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-					<li class="tab-menu__hourly--item">
-						<a class="tab-menu__hourly--link" href="#">
-							<p class="tab-menu__hourly--time">7pm</p>
-							<img class="tab-menu__hourly--icon" src="img/sun.png" alt="img-icon-forecast" />
-							<p class="tab-menu__hourly--forecast">Sunny</p>
-							<p class="tab-menu__hourly--temp">29&deg;</p>
-							<p class="tab-menu__hourly--real-feel">28&deg;</p>
-							<p class="tab-menu__hourly--wind">11ESE</p>
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
+    <div class="tab-menu__hourly--header">
+        <h2 class="tab-menu__hourly--title title">Hourly</h2>
+        <h2 id="city" class="tab-menu__hourly--city title"></h2>
+    </div>
+    <div class="tab-menu__hourly--content">
+        <div class="tab-menu__hourly--description">
+            <h3 class="tab-menu__hourly--name">ToDay</h3>
+            <div class="tab-menu__hourly--img"></div>
+            <p class="tab-menu__hourly--forecast-title">Forecast</p>
+            <p class="tab-menu__hourly--temp-title">Temp (&deg;C)</p>
+            <p class="tab-menu__hourly--real-feel-title">RealFeel</p>
+            <p class="tab-menu__hourly--wind-title">Wind (km/h)</p>
+        </div>
+        <div class="tab-menu__hourly--today-list">
+            <nav class="tab-menu__hourly--nav">
+                <ul class="tab-menu__hourly--list">
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+<!--                    <li class="tab-menu__hourly&#45;&#45;item">-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;time">7pm</p>-->
+<!--                        <img class="tab-menu__hourly&#45;&#45;icon" src="img/sun.png" alt="img-icon-forecast"/>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;forecast">Sunny</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;temp">29&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;real-feel">28&deg;</p>-->
+<!--                        <p class="tab-menu__hourly&#45;&#45;wind">11ESE</p>-->
+<!--                    </li>-->
+                </ul>
+            </nav>
+        </div>
+    </div>
 </section>                </div>
 
             </div>
