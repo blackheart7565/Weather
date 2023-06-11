@@ -1,7 +1,6 @@
 class Weather {
     #apiQuery;
     #dateTimeWork;
-    static city;
 
     constructor() {
         this.#apiQuery = new APIQuery();
