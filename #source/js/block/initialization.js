@@ -1,4 +1,5 @@
 
+
 const tabMenu = new TabMenu(btnsTabMenu, tabMenuPanel);
 const weather = new Weather();
 
@@ -16,13 +17,21 @@ btnsTabMenu.forEach(item => {
     });
 });
 
-a.forEach(item => {
-    item.addEventListener('click', e => {
-        e.preventDefault();
-    });
+btnSearch.addEventListener('click', e => {
+    if(search.value === '' || search.value === ' ' || search.value === null || search.value === undefined){
+        weather.refreshWeather();
+        weather.get('Kyiv');
+        console.clear();
+    }else{
+        weather.refreshWeather();
+        weather.get(search.value);
+    }
+});
+search.addEventListener('input', e => {
+    if(search.value === '' || search.value === ' ' || search.value === null || search.value === undefined){
+        weather.refreshWeather();
+        weather.get('Kyiv');
+        console.clear();
+    }
 });
 
-btnSearch.addEventListener('click', e => {
-    weather.refreshWeather();
-    weather.get(search.value);
-});

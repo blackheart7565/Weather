@@ -96,6 +96,13 @@
   &__real-feel {
     font-size: 14px;
   }
+  // .tab-menu__real-feel
+  &__real-feel--title {
+  }
+  // .tab-menu__real-feel
+  &__real-feel--name {
+    display: inline-block;
+  }
   // .tab-menu__info
   &__info {
     display: grid;
@@ -104,15 +111,27 @@
   // .tab-menu__sunrise
   &__sunrise {
   }
-  // .tab-menu__text
-  &__text {
-    margin-right: 20px;
+  // .tab-menu__sunrise--name
+  &__sunrise--name {
+    display: inline-block;
   }
   // .tab-menu__sunset
   &__sunset {
   }
+  // .tab-menu__sunset--name
+  &__sunset--name {
+    display: inline-block;
+  }
   // .tab-menu__duration
   &__duration {
+  }
+  // .tab-menu__duration--name
+  &__duration--name {
+    display: inline-block;
+  }
+  // .tab-menu__text
+  &__text {
+    margin-right: 20px;
   }
   // .tab-menu__current-weather--nav
   &__weather-days {

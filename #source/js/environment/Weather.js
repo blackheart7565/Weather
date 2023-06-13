@@ -1,131 +1,237 @@
+
+
 class Weather {
     #apiQuery;
     #dateTimeWork;
+    #weakDay
+
+    #apiKey = `c04f46f774de2f467fa5443d7c7f9950`;
+    #lang = `ru`;
+    #units = 'metric';
+    #cnt = 8;
 
     constructor() {
         this.#apiQuery = new APIQuery();
         this.#dateTimeWork = new DateTimeWork();
     }
 
-    get(city) {
-        const apiKey = `c04f46f774de2f467fa5443d7c7f9950`;
-        const lang = `en`;
-        const units = 'metric';
-        const cnt = 8;
-        const cntDay = 40;
+    get(city = 'Kyiv') {
+        const currentDataUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${this.#units}&lang=${this.#lang}&appid=${this.#apiKey}`;
 
-        const currentDataUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&lang=${lang}&appid=${apiKey}`;
+        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=${this.#lang}&units=${this.#units}&cnt=${this.#cnt}&appid=${this.#apiKey}`;
 
-        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=${lang}&units=${units}&cnt=${cnt}&appid=${apiKey}`;
-
-        const urlSevenDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=${lang}&units=${units}&cnt=${cntDay}&appid=${apiKey}`;
-
+        const urlSevenDay = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=${this.#lang}&units=${this.#units}&cnt=40&appid=${this.#apiKey}`;
 
         this.#apiQuery.getQueryData(currentDataUrl)
             .then(data => {
+                this.#apiQuery.getError(error, false);
                 this.getCurrentForecast(data);
+
+                this.getNearestCities(data.coord, 20);
             })
-            .catch(error => {
-                console.error(error);
-                alert(error);
+            .catch(errorApi => {
+                this.#apiQuery.getError(error, true, errorApi);
+                console.error(errorApi);
             });
 
         this.#apiQuery.getQueryData(url)
             .then(data => {
+                this.#apiQuery.getError(error, false);
                 this.getHourlyForecast(data);
             })
-            .catch(error => {
-                console.error(error);
-                alert(error);
+            .catch(errorApi => {
+                this.#apiQuery.getError(error, true, errorApi);
+                console.error(errorApi);
             })
 
         this.#apiQuery.getQueryData(urlSevenDay)
             .then(data => {
-                this.getForecastOnSevenDay(data);
+                this.#apiQuery.getError(error, false);
+                this.getForecastOnSixDay(data);
             })
-            .catch(error => {
-                console.error(error);
-                alert(error);
+            .catch(errorApi => {
+                this.#apiQuery.getError(error, true, errorApi);
+                console.error(errorApi);
             })
     }
-
     getCurrentForecast(data) {
-        const currentData = document.getElementById('current-data');
-        const city = document.getElementById('city');
-
-        const icon = document.querySelector('.tab-menu__img');
-        const description = document.querySelector('.tab-menu__subtext');
-
-        const temperature = document.querySelector('.tab-menu__heading');
-        const realFeel = document.querySelector('.tab-menu__real-feel');
-
-        const sunrise = document.querySelector('.tab-menu__sunrise');
-        const sunset = document.querySelector('.tab-menu__sunset');
-        const duration = document.querySelector('.tab-menu__duration');
-
         const sunriseTime = this.#dateTimeWork.getTime(data.sys.sunrise * 1000, false);
         const sunsetTime = this.#dateTimeWork.getTime(data.sys.sunset * 1000, false);
-
         const durationTime = this.#dateTimeWork.getDurationTime(data.sys.sunrise * 1000, data.sys.sunset * 1000, false);
 
 
-        return (function (timeWork) {
-            currentData.textContent = timeWork.getDate(data["dt"] * 1000);
-            city.innerHTML = `<span class="tab-menu__hourly--city-name title">City: </span>${data.name}`;
+        currentData.textContent = this.#dateTimeWork.getDate(data["dt"] * 1000);
 
-            icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
-            description.textContent = data.weather[0].description;
+        city.forEach(item => {
+            item.innerHTML = `${data.name}`;
+        });
 
-            temperature.textContent = `${Math.round(data.main.temp)}\u00B0C`;
-            realFeel.innerHTML = `<span>Real Feel: </span>${Math.round(data.main.feels_like)}\u00B0C`;
+        icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+        description.textContent = data.weather[0].description;
 
-            sunrise.innerHTML = `<span class="tab-menu__text">Sunrise: </span>${sunriseTime}`;
-            sunset.innerHTML = `<span class="tab-menu__text">Sunset: </span>${sunsetTime}`;
-            duration.innerHTML = `<span class="tab-menu__text">Duration: </span>${durationTime}`;
-        })(this.#dateTimeWork);
+        temperature.textContent = `${Math.round(data.main.temp)}\u00B0C`;
+        realFeel.innerHTML = `${Math.round(data.main.feels_like)}\u00B0C`;
+
+        sunrise.innerHTML = `${sunriseTime}`;
+        sunset.innerHTML = `${sunsetTime}`;
+        duration.innerHTML = `${durationTime}`;
     }
-
     getHourlyForecast(data) {
-        const ul = document.querySelectorAll('.tab-menu__hourly--list');
+        const uls = document.querySelectorAll('.tab-menu__hourly--list');
 
         for (let x = 0; x < data.list.length; x++) {
             const item = data.list[x];
-            if (x <= 5) {
-                const dataTime = new Date(item.dt_txt);
-                const li = document.createElement('li');
-                li.classList.add('tab-menu__hourly--item');
+            if (x <= 6) {
+                let li = this.createHourlyElementLi(item);
 
-                li.innerHTML = `<p class="tab-menu__hourly--time">${this.#dateTimeWork.getTime(dataTime, false)}</p>
-                                <img class="tab-menu__hourly--icon" src="https://openweathermap.org/img/wn/${item.weather[0].icon}.png" alt="img-icon-forecast"/>
-                                <p class="tab-menu__hourly--forecast">${item.weather[0].description}</p>
-                                <p class="tab-menu__hourly--temp">${Math.round(item.main.temp)}&deg;</p>
-                                <p class="tab-menu__hourly--real-feel">${Math.round(item.main.feels_like)}&deg;</p>
-                                <p class="tab-menu__hourly--wind">${Math.round(item.wind.speed)} ${this.getWindFormat(item.wind.deg)}</p>
-                                `;
-
-                ul.forEach((ul) => {
+                uls.forEach((ul) => {
                     ul.append(li.cloneNode(true));
                 });
             }
         }
     }
 
-    getForecastOnSevenDay(data) {
+
+    getNearestCities({lat, lon }, numberDisplayCity) {
+        const urlFindNearestCity = `https://api.openweathermap.org/data/2.5/find?type=like&lat=${lat}&lon=${lon}&cnt=${numberDisplayCity}&lang=${this.#lang}&units=${this.#units}&appid=${this.#apiKey}`;
+
+        this.#apiQuery.getQueryData(urlFindNearestCity)
+            .then(data => {
+                console.log(data)
+                data.list = this.#getUniqueCity(data);
+
+                this.#displayCitys(data);
+            })
+            .catch(errorApi => {
+                this.#apiQuery.getError(error, true, errorApi);
+                console.error(errorApi)
+            });
+    }
+
+    getForecastOnSixDay(data) {
         const weekDayList = document.querySelector('.tab-menu__weather-days--list');
-        const weakDay = this.filterDay(data);
+        this.#weakDay = this.filterDay(data);
 
-        for (let x in weakDay) {
-            const li = document.createElement('li');
-            li.classList.add('tab-menu__weather-days--item');
+        for (let x in this.#weakDay) {
+            const li = this.createWeekDaysElement(x, this.#weakDay);
 
-            const nameDay = this.#dateTimeWork.getWeekDayName(x)
-            const yearName = new Date(x).toLocaleString('default', { month: 'long' });
-            const day = new Date(x).getDate();
-            const icon = `https://openweathermap.org/img/wn/${weakDay[x][0].weather[0].icon}.png`
-            const temp = Math.round(weakDay[x][0].main.temp);
-            const description = (weakDay[x][0].weather[0].description).replace(' ', '<br>');
+            weekDayList.append(li);
+        }
+        document.querySelectorAll('.tab-menu__weather-days--link').forEach(item => {
+            item.addEventListener('click', e => {
+                this.#handleClick(data, e);
+            });
+        });
+    }
 
-            li.innerHTML = `<a href="#" class="tab-menu__weather-days--link">
+    #displayCitys(data) {
+        nearestCityList.innerHTML = '';
+
+        for (let key = 0; key < data.list.length; key++) {
+            if(key < 9) {
+                const item = data.list[key];
+                const li = document.createElement('li');
+                li.classList.add('tab-menu__nearest-cities--item');
+
+                li.innerHTML = `<a href="#" class="tab-menu__nearest-cities--link">
+                                <div class="tab-menu__nearest-cities--col">
+                                    <div class="tab-menu__nearest-cities--row">
+                                        <span class="tab-menu__nearest-cities--city">${item.name}</span>
+                                        <span class="tab-menu__nearest-cities--country">${item.sys.country}</span>
+                                    </div>
+                                    <div class="tab-menu__nearest-cities--row">
+                        
+                                        <div class="tab-menu__nearest-cities--main-temp">
+                                            <span class="tab-menu__nearest-cities--main-temp-title">Temp(&deg;C):</span>
+                                            <div class="tab-menu__nearest-cities--main-temp-name">${Math.round(item.main.temp)}&deg;C</div>
+                                        </div>
+                        
+                                        <div class="tab-menu__nearest-cities--real-feel">
+                                            <span class="tab-menu__nearest-cities--real-feel-title">RealFeel:</span>
+                                            <div class="tab-menu__nearest-cities--real-feel-name">${item.main.feels_like}&deg;C
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-menu__nearest-cities--col">
+                                    <img class="tab-menu__nearest-cities--img"
+                                         src="https://openweathermap.org/img/wn/${item.weather[0].icon}.png" alt="">
+                                </div>
+                            </a>
+                            `;
+
+                nearestCityList.append(li);
+            }
+        }
+    }
+    #getUniqueCity(data) {
+        const cities = data.list.map(city => city.name);
+
+        // Фильтруем уникальные города
+        const uniqueCities = [...new Set(cities)];
+
+        // Создаем новый массив объектов городов с уникальными именами
+        // Обновляем исходный объект с уникальными городами
+        return uniqueCities.map(city => ({
+            ...data.list.find(item => item.name === city)
+        }));
+    }
+
+    #handleClick (data, event) {
+        event.preventDefault();
+        const target = event.target.closest('.tab-menu__weather-days--link');
+
+        if(target) {
+            const nameWeekDay = target.firstElementChild.textContent;
+
+            for (const x in this.#weakDay) {
+                const nameDay = this.#dateTimeWork.getWeekDayName(x);
+                if (nameDay === 'ToNight') {
+                    this.#updateHourlyList(data.list.slice(0, 7), 0);
+                }
+                if(nameWeekDay === nameDay) {
+                    const filteredItems = this.#weakDay[x].slice(0, 7);
+                    this.#updateHourlyList(filteredItems, 1);
+                }
+            }
+        }
+    };
+    #updateHourlyList = (items, listIndex) => {
+        const hourlyList = document.querySelectorAll('.tab-menu__hourly--list');
+        hourlyList[listIndex].innerHTML = '';
+
+        for(const item of items) {
+            const li = this.createHourlyElementLi(item);
+            hourlyList[listIndex].append(li);
+        }
+    }
+
+    createHourlyElementLi(item) {
+        const li = document.createElement('li');
+        const dataTime = new Date(item.dt_txt);
+        li.classList.add('tab-menu__hourly--item');
+
+        li.innerHTML = `<p class="tab-menu__hourly--time">${this.#dateTimeWork.getTime(dataTime, false)}</p>
+                        <img class="tab-menu__hourly--icon" src="https://openweathermap.org/img/wn/${item.weather[0].icon}.png" alt="img-icon-forecast"/>
+                        <p class="tab-menu__hourly--forecast">${item.weather[0].description.replace(' ', '<br>')}</p>
+                        <p class="tab-menu__hourly--temp">${Math.round(item.main.temp)}&deg;</p>
+                        <p class="tab-menu__hourly--real-feel">${Math.round(item.main.feels_like)}&deg;</p>
+                        <p class="tab-menu__hourly--wind">${Math.round(item.wind.speed)} ${this.getWindFormat(item.wind.deg)}</p>
+                        `;
+        return li;
+    }
+    createWeekDaysElement(item, weakDay) {
+        const li = document.createElement('li');
+        li.classList.add('tab-menu__weather-days--item');
+
+        const nameDay = this.#dateTimeWork.getWeekDayName(item)
+        const yearName = new Date(item).toLocaleString('default', { month: 'long' });
+        const day = new Date(item).getDate();
+        const icon = `https://openweathermap.org/img/wn/${weakDay[item][0].weather[0].icon}.png`
+        const temp = Math.round(weakDay[item][0].main.temp);
+        const description = (weakDay[item][0].weather[0].description).replace(' ', '<br>');
+
+        li.innerHTML = `<a href="#" class="tab-menu__weather-days--link">
                                 <h2 class="tab-menu__weather-days--title title">${nameDay}</h2>
                                 <p class="tab-menu__weather-days--data">
                                     <span class="tab-menu__weather-days--year">${yearName}</span>
@@ -136,10 +242,8 @@ class Weather {
                                 <p class="tab-menu__weather-days--forecast">${description}</p>
                             </a>
                             `;
-            weekDayList.append(li);
-        }
+        return li;
     }
-
     getWindFormat(deg) {
         switch (true) {
             case (deg >= 0 && deg < 45):
@@ -162,17 +266,13 @@ class Weather {
                 return 'N';
         }
     }
-
     refreshWeather() {
-        const hourlyList = document.querySelectorAll('.tab-menu__hourly--list');
-        const weatherDaysList = document.querySelector('.tab-menu__weather-days--list');
-
         hourlyList.forEach(item => {
             item.innerHTML = '';
         });
+
         weatherDaysList.innerHTML = '';
     }
-
     filterDay(data) {
         const dailyForecasts = {};
 
@@ -189,16 +289,3 @@ class Weather {
         return dailyForecasts;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

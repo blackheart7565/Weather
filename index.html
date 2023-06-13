@@ -37,11 +37,11 @@
 
             <div class="tab-menu__content">
 
-                <div class="tab-menu__panel">
+                <div class="tab-menu__panel" data-first-panel-content="first-panel-content">
                     <section class="tab-menu__current-weather">
                         <div class="tab-menu__current-weather--header">
                             <h2 class="tab-menu__title title">Current Weather</h2>
-                            <h2 id="current-data" class="tab-menu__data title">30.06.2018</h2>
+                            <h2 id="current-data" class="tab-menu__data title"></h2>
                         </div>
                         <div class="tab-menu__current-weather--content">
                             <div class="tab-menu__icon">
@@ -50,22 +50,41 @@
                             </div>
 
                             <div class="tab-menu__current-temp">
-                                <h2 class="tab-menu__heading">29&deg;C</h2>
+                                <h2 class="tab-menu__heading"></h2>
 
-                                <div class="tab-menu__real-feel"></div>
+                                <div class="tab-menu__real-feel">
+                                    <span class="tab-menu__real-feel--title">Real Feel: </span>
+                                    <div class="tab-menu__real-feel--name"></div>
+                                </div>
                             </div>
 
                             <div class="tab-menu__info">
-                                <div class="tab-menu__sunrise"></div>
-                                <div class="tab-menu__sunset"></div>
-                                <div class="tab-menu__duration"></div>
+                                <div class="tab-menu__sunrise">
+                                    <span class="tab-menu__text">Sunrise: </span>
+                                    <div class="tab-menu__sunrise--name"></div>
+                                </div>
+
+                                <div class="tab-menu__sunset">
+                                    <span class="tab-menu__text">Sunset: </span>
+                                    <div class="tab-menu__sunset--name"></div>
+                                </div>
+
+                                <div class="tab-menu__duration">
+                                    <span class="tab-menu__text">Duration: </span>
+                                    <div class="tab-menu__duration--name"></div>
+                                </div>
                             </div>
                         </div>
                     </section>
 <section class="tab-menu__hourly">
     <div class="tab-menu__hourly--header">
         <h2 class="tab-menu__hourly--title title">Hourly</h2>
-        <h2 id="city" class="tab-menu__hourly--city title"></h2>
+
+        <div class="tab-menu__hourly--city">
+            <span class="tab-menu__hourly--city-title title">City: </span>
+            <h2 id="city" class="tab-menu__hourly--city-name title"></h2>
+        </div>
+
     </div>
     <div class="tab-menu__hourly--content">
         <div class="tab-menu__hourly--description">
@@ -82,9 +101,14 @@
             </nav>
         </div>
     </div>
-</section>                </div>
+</section>                    <section class="tab-menu__nearest-cities">
+                        <nav class="tab-menu__nearest-cities--nav">
+                            <ul class="tab-menu__nearest-cities--list"></ul>
+                        </nav>
+                    </section>
+                </div>
 
-                <div class="tab-menu__panel">
+                <div class="tab-menu__panel" data-second-panel-content="second-panel-content">
                     <section class="tab-menu__weather-days">
                         <nav class="tab-menu__weather-days--nav">
                             <ul class="tab-menu__weather-days--list"></ul>
@@ -93,7 +117,12 @@
 <section class="tab-menu__hourly">
     <div class="tab-menu__hourly--header">
         <h2 class="tab-menu__hourly--title title">Hourly</h2>
-        <h2 id="city" class="tab-menu__hourly--city title"></h2>
+
+        <div class="tab-menu__hourly--city">
+            <span class="tab-menu__hourly--city-title title">City: </span>
+            <h2 id="city" class="tab-menu__hourly--city-name title"></h2>
+        </div>
+
     </div>
     <div class="tab-menu__hourly--content">
         <div class="tab-menu__hourly--description">
@@ -118,7 +147,13 @@
 
     </div>
 
+    <div class="error" id="error">
+        <!--    <div class="error__img"></div>-->
+        <div class="error__message"></div>
+    </div>
+
 </div>
+
 
 </body>
 

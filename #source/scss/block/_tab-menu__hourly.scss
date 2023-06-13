@@ -21,6 +21,10 @@
   }
   // .tab-menu__hourly--city-name
   &__hourly--city-name {
+    display: inline-block;
+  }
+  // .tab-menu__hourly--city-title
+  &__hourly--city-title {
     margin-right: 10px;
   }
   // .tab-menu__hourly--content
@@ -88,8 +92,8 @@
   // .tab-menu__hourly--list
   &__hourly--list {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    column-gap: 20px;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 16px;
     height: inherit;
   }
   // .tab-menu__hourly--item
