@@ -3,6 +3,7 @@
   &__hourly {
     background: #f4f4f4;
     padding: $--padding-container;
+    margin-bottom: 20px;
   }
   // .tab-menu__hourly--header
   &__hourly--header {
@@ -30,7 +31,7 @@
   // .tab-menu__hourly--content
   &__hourly--content {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
   }
   // .tab-menu__hourly--description
   &__hourly--description {
@@ -57,7 +58,7 @@
   // .tab-menu__hourly--forecast-title
   &__hourly--forecast-title {
     display: flex;
-    height: 35px;
+    height: 50px;
     align-items: center;
     justify-content: center;
   }
@@ -92,8 +93,8 @@
   // .tab-menu__hourly--list
   &__hourly--list {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    column-gap: 16px;
+    grid-template-columns: repeat($count-column, 1fr);
+    column-gap: 5px;
     height: inherit;
   }
   // .tab-menu__hourly--item
@@ -103,9 +104,10 @@
     align-items: center;
     text-align: center;
     height: inherit;
+    width: 150px;
 
     gap: 10px;
-    padding: 10px 20px;
+    padding: 10px;
 
     color: #000;
   }
@@ -115,11 +117,16 @@
   // .tab-menu__hourly--icon-forecast
   &__hourly--icon {
     width: 80px;
+
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   // .tab-menu__hourly--forecast
   &__hourly--forecast {
     display: flex;
-    height: 35px;
+    height: 50px;
     align-items: center;
     justify-content: center;
   }

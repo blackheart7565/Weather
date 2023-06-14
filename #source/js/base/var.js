@@ -18,10 +18,11 @@ const icon = document.querySelector('.tab-menu__img');
 const description = document.querySelector('.tab-menu__subtext');
 
 const temperature = document.querySelector('.tab-menu__heading');
-const realFeel = document.querySelector('.tab-menu__real-feel--name');//
+const realFeel = document.querySelector('.tab-menu__real-feel--name');
 
 const sunrise = document.querySelector('.tab-menu__sunrise--name');
 const sunset = document.querySelector('.tab-menu__sunset--name');
 const duration = document.querySelector('.tab-menu__duration--name');
 
 const nearestCityList = document.querySelector('.tab-menu__nearest-cities--list');
+

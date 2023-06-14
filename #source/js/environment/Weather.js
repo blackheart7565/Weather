@@ -4,9 +4,10 @@ class Weather {
     #apiQuery;
     #dateTimeWork;
     #weakDay
+    #countCardList = 6;
 
     #apiKey = `c04f46f774de2f467fa5443d7c7f9950`;
-    #lang = `ru`;
+    #lang = `en`;
     #units = 'metric';
     #cnt = 8;
 
@@ -81,7 +82,7 @@ class Weather {
 
         for (let x = 0; x < data.list.length; x++) {
             const item = data.list[x];
-            if (x <= 6) {
+            if (x < this.#countCardList) {
                 let li = this.createHourlyElementLi(item);
 
                 uls.forEach((ul) => {
@@ -90,24 +91,6 @@ class Weather {
             }
         }
     }
-
-
-    getNearestCities({lat, lon }, numberDisplayCity) {
-        const urlFindNearestCity = `https://api.openweathermap.org/data/2.5/find?type=like&lat=${lat}&lon=${lon}&cnt=${numberDisplayCity}&lang=${this.#lang}&units=${this.#units}&appid=${this.#apiKey}`;
-
-        this.#apiQuery.getQueryData(urlFindNearestCity)
-            .then(data => {
-                console.log(data)
-                data.list = this.#getUniqueCity(data);
-
-                this.#displayCitys(data);
-            })
-            .catch(errorApi => {
-                this.#apiQuery.getError(error, true, errorApi);
-                console.error(errorApi)
-            });
-    }
-
     getForecastOnSixDay(data) {
         const weekDayList = document.querySelector('.tab-menu__weather-days--list');
         this.#weakDay = this.filterDay(data);
@@ -123,8 +106,20 @@ class Weather {
             });
         });
     }
+    getNearestCities({lat, lon }, numberDisplayCity) {
+        const urlFindNearestCity = `https://api.openweathermap.org/data/2.5/find?type=like&lat=${lat}&lon=${lon}&cnt=${numberDisplayCity}&lang=${this.#lang}&units=${this.#units}&appid=${this.#apiKey}`;
 
-    #displayCitys(data) {
+        this.#apiQuery.getQueryData(urlFindNearestCity)
+            .then(data => {
+                data.list = this.#getUniqueCity(data);
+                this.#displayCity(data);
+            })
+            .catch(errorApi => {
+                this.#apiQuery.getError(error, true, errorApi);
+                console.error(errorApi)
+            });
+    }
+    #displayCity(data) {
         nearestCityList.innerHTML = '';
 
         for (let key = 0; key < data.list.length; key++) {
@@ -134,31 +129,25 @@ class Weather {
                 li.classList.add('tab-menu__nearest-cities--item');
 
                 li.innerHTML = `<a href="#" class="tab-menu__nearest-cities--link">
-                                <div class="tab-menu__nearest-cities--col">
-                                    <div class="tab-menu__nearest-cities--row">
+                                    <div class="tab-menu__nearest-cities--location">
                                         <span class="tab-menu__nearest-cities--city">${item.name}</span>
                                         <span class="tab-menu__nearest-cities--country">${item.sys.country}</span>
                                     </div>
-                                    <div class="tab-menu__nearest-cities--row">
-                        
-                                        <div class="tab-menu__nearest-cities--main-temp">
-                                            <span class="tab-menu__nearest-cities--main-temp-title">Temp(&deg;C):</span>
-                                            <div class="tab-menu__nearest-cities--main-temp-name">${Math.round(item.main.temp)}&deg;C</div>
-                                        </div>
-                        
-                                        <div class="tab-menu__nearest-cities--real-feel">
-                                            <span class="tab-menu__nearest-cities--real-feel-title">RealFeel:</span>
-                                            <div class="tab-menu__nearest-cities--real-feel-name">${item.main.feels_like}&deg;C
+                                    <div class="tab-menu__nearest-cities--col">
+                                        <div class="tab-menu__nearest-cities--row">
+                                            <div class="tab-menu__nearest-cities--main-temp">
+                                                <span class="tab-menu__nearest-cities--main-temp-title">Temp(&deg;C):</span>
+                                                <div class="tab-menu__nearest-cities--main-temp-name">${Math.round(item.main.temp)}&deg;C</div>
+                                            </div>                            
+                                            <div class="tab-menu__nearest-cities--real-feel">
+                                                <span class="tab-menu__nearest-cities--real-feel-title">RealFeel:</span>
+                                                <div class="tab-menu__nearest-cities--real-feel-name">${Math.round(item.main.feels_like)}&deg;C</div>
                                             </div>
                                         </div>
+                                        <img class="tab-menu__nearest-cities--img" src="https://openweathermap.org/img/wn/${item.weather[0].icon}.png" alt="">
                                     </div>
-                                </div>
-                                <div class="tab-menu__nearest-cities--col">
-                                    <img class="tab-menu__nearest-cities--img"
-                                         src="https://openweathermap.org/img/wn/${item.weather[0].icon}.png" alt="">
-                                </div>
-                            </a>
-                            `;
+                                </a>
+                                `;
 
                 nearestCityList.append(li);
             }
@@ -176,7 +165,6 @@ class Weather {
             ...data.list.find(item => item.name === city)
         }));
     }
-
     #handleClick (data, event) {
         event.preventDefault();
         const target = event.target.closest('.tab-menu__weather-days--link');
@@ -187,10 +175,10 @@ class Weather {
             for (const x in this.#weakDay) {
                 const nameDay = this.#dateTimeWork.getWeekDayName(x);
                 if (nameDay === 'ToNight') {
-                    this.#updateHourlyList(data.list.slice(0, 7), 0);
+                    this.#updateHourlyList(data.list.slice(0, this.#countCardList), 0);
                 }
                 if(nameWeekDay === nameDay) {
-                    const filteredItems = this.#weakDay[x].slice(0, 7);
+                    const filteredItems = this.#weakDay[x].slice(0, this.#countCardList);
                     this.#updateHourlyList(filteredItems, 1);
                 }
             }
@@ -205,7 +193,6 @@ class Weather {
             hourlyList[listIndex].append(li);
         }
     }
-
     createHourlyElementLi(item) {
         const li = document.createElement('li');
         const dataTime = new Date(item.dt_txt);
