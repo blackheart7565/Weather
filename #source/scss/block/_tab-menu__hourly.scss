@@ -118,10 +118,8 @@
   &__hourly--icon {
     width: 80px;
 
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include filterIcon;
+    @include positionRelativeCenter;
   }
   // .tab-menu__hourly--forecast
   &__hourly--forecast {

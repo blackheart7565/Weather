@@ -179,6 +179,7 @@ body {
 .tab-menu__img {
   width: 100px;
   margin-bottom: 5px;
+  filter: brightness(90%);
 }
 .tab-menu__current-temp {
   text-align: center;
@@ -228,6 +229,7 @@ body {
 }
 .tab-menu__weather-days--img {
   width: 100px;
+  filter: brightness(90%);
   position: relative;
   top: 50%;
   left: 50%;
@@ -343,6 +345,7 @@ body {
 }
 .tab-menu__hourly--icon {
   width: 80px;
+  filter: brightness(90%);
   position: relative;
   top: 50%;
   left: 50%;
@@ -468,6 +471,7 @@ body {
 }
 .tab-menu__nearest-cities--img {
   width: 80px;
+  filter: brightness(90%);
 }
 
 /*# sourceMappingURL=main.css.map */

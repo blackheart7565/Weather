@@ -79,6 +79,8 @@
   &__img {
     width: 100px;
     margin-bottom: 5px;
+
+    @include filterIcon;
   }
   // .tab-menu__subtext
   &__subtext {
@@ -175,10 +177,9 @@
   // .tab-menu__current-weather--img
   &__weather-days--img {
     width: 100px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+    @include filterIcon;
+    @include positionRelativeCenter;
   }
   // .tab-menu__current-weather--temp
   &__weather-days--temp {
