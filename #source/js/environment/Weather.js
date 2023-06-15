@@ -1,5 +1,3 @@
-
-
 class Weather {
     #apiQuery;
     #dateTimeWork;
@@ -16,6 +14,7 @@ class Weather {
         this.#dateTimeWork = new DateTimeWork();
     }
 
+    // Получение данных с API запроса
     get(city = 'Kyiv') {
         const currentDataUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${this.#units}&lang=${this.#lang}&appid=${this.#apiKey}`;
 
@@ -55,6 +54,8 @@ class Weather {
                 console.error(errorApi);
             })
     }
+
+    // Отображение текущей погоды города(страны)
     getCurrentForecast(data) {
         const sunriseTime = this.#dateTimeWork.getTime(data.sys.sunrise * 1000, false);
         const sunsetTime = this.#dateTimeWork.getTime(data.sys.sunset * 1000, false);
@@ -77,6 +78,8 @@ class Weather {
         sunset.innerHTML = `${sunsetTime}`;
         duration.innerHTML = `${durationTime}`;
     }
+
+    // Отображение временого промежутка текущего города(страны)
     getHourlyForecast(data) {
         const uls = document.querySelectorAll('.tab-menu__hourly--list');
 
@@ -91,6 +94,8 @@ class Weather {
             }
         }
     }
+
+    // Отобрадение текущей погода города(страны) на 6 дней вперёд
     getForecastOnSixDay(data) {
         const weekDayList = document.querySelector('.tab-menu__weather-days--list');
         this.#weakDay = this.filterDay(data);
@@ -106,29 +111,57 @@ class Weather {
             });
         });
     }
-    getNearestCities({lat, lon }, numberDisplayCity) {
+
+    // Отображение ближайщих городов к текущему городу(страны)
+    getNearestCities({lat, lon}, numberDisplayCity) {
         const urlFindNearestCity = `https://api.openweathermap.org/data/2.5/find?type=like&lat=${lat}&lon=${lon}&cnt=${numberDisplayCity}&lang=${this.#lang}&units=${this.#units}&appid=${this.#apiKey}`;
 
         this.#apiQuery.getQueryData(urlFindNearestCity)
             .then(data => {
                 data.list = this.#getUniqueCity(data);
-                this.#displayCity(data);
+                this.#displayNearestCity(data);
             })
             .catch(errorApi => {
                 this.#apiQuery.getError(error, true, errorApi);
                 console.error(errorApi)
             });
     }
-    #displayCity(data) {
+
+    // Отображение ближайщих городов
+    #displayNearestCity(data) {
         nearestCityList.innerHTML = '';
 
-        for (let key = 0; key < data.list.length; key++) {
-            if(key < 9) {
-                const item = data.list[key];
-                const li = document.createElement('li');
-                li.classList.add('tab-menu__nearest-cities--item');
+        data.list.slice(0, 9).forEach(item => {
+            const li = this.createNearestCityListItem(item);
+            nearestCityList.append(li);
+        });
+        document.querySelectorAll('.tab-menu__nearest-cities--link').forEach(item => {
+           item.addEventListener('click', event => {
+                this.#handleClickNearestCity(event);
+           })
+        });
+    }
 
-                li.innerHTML = `<a href="#" class="tab-menu__nearest-cities--link">
+    // Отображение погодных услови ближайщего города(страны)
+    #handleClickNearestCity(event) {
+        event.preventDefault();
+
+        const target = event.target.closest('.tab-menu__nearest-cities--link');
+
+        const nearestCity = target.querySelector('.tab-menu__nearest-cities--city');
+
+        this.refreshWeather();
+
+        console.log(nearestCity.textContent)
+        this.get(nearestCity.textContent);
+    }
+
+    // Создание элемента списка ближайших городов
+    createNearestCityListItem(item){
+        const li = document.createElement('li');
+        li.classList.add('tab-menu__nearest-cities--item');
+
+        li.innerHTML = `<a href="#" class="tab-menu__nearest-cities--link">
                                     <div class="tab-menu__nearest-cities--location">
                                         <span class="tab-menu__nearest-cities--city">${item.name}</span>
                                         <span class="tab-menu__nearest-cities--country">${item.sys.country}</span>
@@ -148,11 +181,10 @@ class Weather {
                                     </div>
                                 </a>
                                 `;
-
-                nearestCityList.append(li);
-            }
-        }
+        return li;
     }
+
+    // Получение уникальных городов(страны)
     #getUniqueCity(data) {
         const cities = data.list.map(city => city.name);
 
@@ -165,11 +197,13 @@ class Weather {
             ...data.list.find(item => item.name === city)
         }));
     }
-    #handleClick (data, event) {
+
+    // Отобрадение временого промежутка с секции дневного расклада на 6 дней
+    #handleClick(data, event) {
         event.preventDefault();
         const target = event.target.closest('.tab-menu__weather-days--link');
 
-        if(target) {
+        if (target) {
             const nameWeekDay = target.firstElementChild.textContent;
 
             for (const x in this.#weakDay) {
@@ -177,22 +211,26 @@ class Weather {
                 if (nameDay === 'ToNight') {
                     this.#updateHourlyList(data.list.slice(0, this.#countCardList), 0);
                 }
-                if(nameWeekDay === nameDay) {
+                if (nameWeekDay === nameDay) {
                     const filteredItems = this.#weakDay[x].slice(0, this.#countCardList);
                     this.#updateHourlyList(filteredItems, 1);
                 }
             }
         }
     };
+
+    // Обновление списка временого промежутка
     #updateHourlyList = (items, listIndex) => {
         const hourlyList = document.querySelectorAll('.tab-menu__hourly--list');
         hourlyList[listIndex].innerHTML = '';
 
-        for(const item of items) {
+        for (const item of items) {
             const li = this.createHourlyElementLi(item);
             hourlyList[listIndex].append(li);
         }
     }
+
+    // Создание "li" элемента для секции временого промежутка (hourly)
     createHourlyElementLi(item) {
         const li = document.createElement('li');
         const dataTime = new Date(item.dt_txt);
@@ -207,12 +245,14 @@ class Weather {
                         `;
         return li;
     }
+
+    // Создание "li" элемента для секции отобрадение расклада погоды на 6 дней
     createWeekDaysElement(item, weakDay) {
         const li = document.createElement('li');
         li.classList.add('tab-menu__weather-days--item');
 
         const nameDay = this.#dateTimeWork.getWeekDayName(item)
-        const yearName = new Date(item).toLocaleString('default', { month: 'long' });
+        const yearName = new Date(item).toLocaleString('default', {month: 'long'});
         const day = new Date(item).getDate();
         const icon = `https://openweathermap.org/img/wn/${weakDay[item][0].weather[0].icon}.png`
         const temp = Math.round(weakDay[item][0].main.temp);
@@ -231,6 +271,8 @@ class Weather {
                             `;
         return li;
     }
+
+    // Получение еденицы измерения направления ветра
     getWindFormat(deg) {
         switch (true) {
             case (deg >= 0 && deg < 45):
@@ -253,6 +295,8 @@ class Weather {
                 return 'N';
         }
     }
+
+    // Обновление полей
     refreshWeather() {
         hourlyList.forEach(item => {
             item.innerHTML = '';
@@ -260,6 +304,8 @@ class Weather {
 
         weatherDaysList.innerHTML = '';
     }
+
+    // Фильтрация по дням
     filterDay(data) {
         const dailyForecasts = {};
 
